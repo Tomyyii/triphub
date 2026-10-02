@@ -1,6 +1,6 @@
 export interface Destino{
   id:number;
-  monton:number;
-  moneda:string;
+  ciudad:string;
+  pais:string;
 
 }

@@ -1,5 +1,5 @@
 import { Actividad } from './actividad.interface';
-export interface itinerario{
+export interface Itinerario{
   fechaCreacion: string;
   descripcion: string;
   actividades: Actividad[];

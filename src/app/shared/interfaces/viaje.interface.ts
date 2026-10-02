@@ -1,5 +1,7 @@
 import { Destino } from "./destino.interface";
 import { Gasto } from "./gasto.interface";
+import { Itinerario } from "./itinerario.interface";
+import { ListaNecesidades } from "./listaNecesidades.interface";
 import { Presupuesto } from "./presupuesto.interface";
 
 
@@ -15,4 +17,5 @@ export interface Viaje{
   gastos: Gasto[];
   itinerario: Itinerario;
   listaNecesidades: ListaNecesidades;
+  usuarioId:number;
 }
