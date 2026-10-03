@@ -1,0 +1,22 @@
+{
+  "Usuarios":[
+    {
+      "id": 1,
+      "name": "Tomas",
+      "surname": "Dallier",
+      "email": "tomas.dallier@gmail.com",
+      "password": "1234pas",
+      "birthday": "22/05/2004",
+      "phoneNumber": "1161329058"
+    },
+    {
+      "id": 2,
+      "name": "Juan",
+      "surname": "Perez",
+      "email": "juan@gmail.com",
+      "password": "5678pas",
+      "birthday": "1999-05-15",
+      "phoneNumber": "987654321"
+    }
+  ]
+}
