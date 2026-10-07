@@ -7,7 +7,8 @@
       "email": "tomas.dallier@gmail.com",
       "password": "1234pas",
       "birthday": "22/05/2004",
-      "phoneNumber": "1161329058"
+      "phoneNumber": "1161329058",
+      "gender":"Male"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "email": "juan@gmail.com",
       "password": "5678pas",
       "birthday": "1999-05-15",
-      "phoneNumber": "987654321"
+      "phoneNumber": "987654321",
+      "gender": "Female"
     }
   ]
 }

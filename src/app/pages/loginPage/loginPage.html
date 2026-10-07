@@ -1,1 +1,45 @@
-<p>loginPage works!</p>,
+<h1>LOGIN</h1>
+<h2>Formulario login</h2>
+
+<form (submit)="onSubmit($event)">
+
+
+
+  <label for="email">Email</label>
+  <input type="email" id="email" placeholder="Email"
+  [formField]="loginForm.email">
+
+  <!-- DETECCION DE ERRORES -->
+  @if ( isFieldInvalid('email')) {
+    <p>
+      @for (error of loginForm.email().errors(); track $index) {
+        <span>{{error.message}}</span>
+      }
+    </p>
+  }
+
+
+
+  <label for="password">Contraseña</label>
+  <input type="password" id="password" placeholder="Password"
+  [formField]="loginForm.password">
+  <!-- DETECCION DE ERRORES -->
+  @if ( isFieldInvalid('password') ) {
+    <p>
+      @for (error of loginForm.password().errors(); track $index) {
+        <span>{{error.message}}</span>
+      }
+    </p>
+  }
+
+  @if (loginError()) {
+    <p>{{loginError()}}</p>
+  }
+
+  <button type="submit">Iniciar</button>
+</form>
+
+<br><br><br>
+<pre>
+  {{loginForm().value() | json}}
+</pre>

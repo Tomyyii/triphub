@@ -15,8 +15,20 @@ export class AuthService {
     return this.http.get<Usuario[]>(`${this.apiURL}?email=${email}&password=${password}`);
   }
 
-  devolverUsuarios()
+  logout():void
   {
-    return this.http.get<Usuario[]>(`${this.apiURL}`)
+    localStorage.removeItem('usuario')
   }
+
+  guardarUsuario(usuario:Usuario[])
+  {
+    localStorage.setItem('usuario',JSON.stringify(usuario[0]));
+  }
+
+  isLoggedIn():boolean{
+    return localStorage.getItem('usuario') !== null;
+  }
+
+
+
 }
