@@ -16,7 +16,7 @@ export const authGuard: CanActivateFn = () => {
     return true;
   }
 
-  // Si no existe devuelve al usuario al menu login
+  // Si no existe devuelve al usuario al home
 
   return router.createUrlTree(['']);
 

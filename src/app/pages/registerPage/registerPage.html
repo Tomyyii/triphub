@@ -1,17 +1,117 @@
-<!--
 
 
-<form (submit)="onSubmit()">
+
+<form (submit)="onSubmit($event)">
 
 
   <label for="nombre">Nombre</label>
-  <input type="text" id="name" placeholder="Ingrese su nombre">
+  <input type="text" id="name" placeholder="Ingrese su nombre"
+  [formField]="registerForm.name">
+
+  @if (isFieldInvalid('name')) {
+    <p>
+      @for (error of registerForm.name().errors(); track $index) {
+        <span>{{error.message}}</span>
+      }
+    </p>
+  }
+
   <br>
 
   <label for="apellido">Apellido</label>
-  <input type="text" id="surname" placeholder="Ingrese su apellido">
+  <input type="text" id="surname" placeholder="Ingrese su apellido"
+  [formField]="registerForm.surname">
+  @if (isFieldInvalid('surname')) {
+    <p>
+      @for (error of registerForm.surname().errors(); track $index) {
+        <span>{{error.message}}</span>
+      }
+    </p>
+  }
 
-  <label for=""></label>
+  <br>
+
+  <label for="email">Email</label>
+  <input type="email" id="email" placeholder="Ingrese su email"
+  [formField]="registerForm.email">
+  @if (isFieldInvalid('email')) {
+    <p>
+      @for (error of registerForm.email().errors(); track $index) {
+        <span>{{error.message}}</span>
+      }
+    </p>
+  }
+
+  @if (usuarioExiste()) {
+    <span style="color: red;"> El usuario con este correo ya se encuentra registrado</span>
+  }
+
+  <br>
+
+  <label for="password">Contraseña</label>
+  <input type="password" id="password" placeholder="Ingrese su contraseña"
+  [formField]="registerForm.password">
+  @if (isFieldInvalid('password')) {
+    <p>
+      @for (error of registerForm.password().errors(); track $index) {
+        <span>{{error.message}}</span>
+      }
+    </p>
+  }
+
+  <br>
+
+  <label for="confirmPassword">Confirme su contraseña</label>
+  <input type="password" id="confirmPassword" placeholder="Ingrese su contraseña nuevamente"
+  [formField]="registerForm.confirmPassword">
+  @if (!passwordMatch()) {
+    <span>Las contraseñas no coinciden</span>
+  }
+
+  <br>
+
+  <label for="birthday">Fecha de nacimiento</label>
+  <input type="date"
+  id="birthday"
+  [formField]="registerForm.birthday">
+
+  @if (isFieldInvalid('birthday')) {
+    <p>
+      @for (error of registerForm.birthday().errors(); track $index) {
+        <span>{{error.message}}</span>
+      }
+    </p>
+  }
+
+  <br>
+  <label for="gender">Genero</label>
+  <select id="gender" [formField]="registerForm.gender">
+    <option value="">Selecciona una opcion</option>
+    <option value="Masculino">Masculino</option>
+    <option value="Femenino">Femenino</option>
+    <option value="Otro">Otro</option>
+    <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+  </select>
+
+  @if (isFieldInvalid('gender')) {
+    @for (error of registerForm.gender().errors(); track $index) {
+      <span>{{error.message}}</span>
+    }
+  }
 
 
-</form> -->
+
+  <label for="phoneNumber">Numero de telefono</label>
+  <input type="number" id="phoneNumber" placeholder="+54 xx xxxx-xxxx"
+  [formField]="registerForm.phoneNumber">
+  @if (isFieldInvalid('phoneNumber')) {
+    @for (error of registerForm.phoneNumber().errors(); track $index) {
+      <span>{{error.message}}</span>
+    }
+  }
+
+  <br>
+
+  <button type="submit">Registrar</button>
+
+</form>

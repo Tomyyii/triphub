@@ -62,8 +62,6 @@ export class LoginPage {
           }
             this.serviceAuth.guardarUsuario(usuario)
             this.router.navigate(['/dashboard']);
-
-
         }
       })
 
