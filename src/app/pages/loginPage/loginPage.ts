@@ -3,7 +3,7 @@ import { AuthService } from '../../core/services/authService';
 import { Usuario } from '../../shared/interfaces/usuario.interface';
 import { form, FormField, minLength, required, submit } from '@angular/forms/signals';
 import { JsonPipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 interface UsuarioSimple{
   email:string,
@@ -12,7 +12,7 @@ interface UsuarioSimple{
 
 @Component({
   selector: 'app-login-page',
-  imports: [FormField, JsonPipe],
+  imports: [FormField, JsonPipe, RouterLink],
   templateUrl: './loginPage.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

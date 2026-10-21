@@ -1,21 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AuthService } from '../../core/services/authService';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Navbar } from '../../shared/components/navbar/navbar';
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [],
+  imports: [Navbar, RouterLink,RouterOutlet],
   templateUrl: './dashboardPage.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardPage {
 
-  private authService = inject(AuthService);
-
-  private router = inject(Router);
-
-  cerrarSesion(): void{
-    this.authService.logout();
-    this.router.navigate([''])
-  }
 }

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Usuario } from '../../shared/interfaces/usuario.interface';
 import { form, minLength, pattern, required, FormField, maxLength, submit } from '@angular/forms/signals';
 import { AuthService } from '../../core/services/authService';
@@ -11,7 +11,7 @@ interface registerFormModel extends Usuario{
 
 @Component({
   selector: 'app-register-page',
-  imports: [FormField],
+  imports: [FormField, RouterLink],
   templateUrl: './registerPage.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

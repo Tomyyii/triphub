@@ -1,4 +1,4 @@
-<h1>LOGIN</h1>
+<!-- <h1>LOGIN</h1>
 <h2>Formulario login</h2>
 
 <form (submit)="onSubmit($event)">
@@ -9,7 +9,7 @@
   <input type="email" id="email" placeholder="Email"
   [formField]="loginForm.email">
 
-  <!-- DETECCION DE ERRORES -->
+
   @if ( isFieldInvalid('email')) {
     <p>
       @for (error of loginForm.email().errors(); track $index) {
@@ -23,7 +23,8 @@
   <label for="password">Contraseña</label>
   <input type="password" id="password" placeholder="Password"
   [formField]="loginForm.password">
-  <!-- DETECCION DE ERRORES -->
+
+
   @if ( isFieldInvalid('password') ) {
     <p>
       @for (error of loginForm.password().errors(); track $index) {
@@ -42,4 +43,104 @@
 <br><br><br>
 <pre>
   {{loginForm().value() | json}}
-</pre>
+</pre> -->
+
+
+
+<div class="relative min-h-screen flex items-center justify-center bg-[#e4c5c5] px-4 py-10">
+
+  <div class="absolute left-6 top-6">
+  <a
+    routerLink=""
+    class="inline-flex items-center gap-2 rounded-xl px-4 py-2
+           font-semibold text-[#355834]
+           transition hover:bg-white/50 cursor-pointer"
+  >
+    <span class="text-xl">←</span>
+    Volver
+  </a>
+</div>
+
+
+  <div class="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl sm:p-10">
+
+    <div class="mb-8 text-center">
+      <h1 class="mb-2 text-4xl font-extrabold tracking-tight text-[#355834]">
+        TripHub
+      </h1>
+      <h2 class="text-xl font-semibold text-[#14281D]">
+        Iniciá sesión
+      </h2>
+      <p class="mt-2 text-sm text-gray-500">
+        Ingresá a tu cuenta para continuar tus aventuras.
+      </p>
+    </div>
+
+    <form (submit)="onSubmit($event)" class="space-y-5">
+
+      <div>
+        <label for="email" class="mb-2 block text-sm font-semibold text-[#14281D]">
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          placeholder="tu@email.com"
+          [formField]="loginForm.email"
+          class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20"
+        >
+
+        @if (isFieldInvalid('email')) {
+          <p class="mt-2 text-sm text-red-600">
+            @for (error of loginForm.email().errors(); track $index) {
+              <span class="block">{{ error.message }}</span>
+            }
+          </p>
+        }
+      </div>
+
+      <div>
+        <label for="password" class="mb-2 block text-sm font-semibold text-[#14281D]">
+          Contraseña
+        </label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Ingresá tu contraseña"
+          [formField]="loginForm.password"
+          class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20"
+        >
+
+        @if (isFieldInvalid('password')) {
+          <p class="mt-2 text-sm text-red-600">
+            @for (error of loginForm.password().errors(); track $index) {
+              <span class="block">{{ error.message }}</span>
+            }
+          </p>
+        }
+      </div>
+
+      @if (loginError()) {
+        <p class="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+          {{ loginError() }}
+        </p>
+      }
+
+      <button
+        type="submit"
+        class="w-full rounded-xl bg-[#355834] px-4 py-3 font-semibold text-white shadow-sm transition hover:bg-[#14281D] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#355834] cursor-pointer"
+      >
+        Iniciar sesión
+      </button>
+
+    </form>
+
+    <p class="mt-6 text-center text-sm text-gray-600">
+      ¿Todavía no tenés cuenta?
+      <a routerLink="/register" class="font-semibold text-[#355834] underline-offset-4 hover:underline cursor-pointer">
+        Registrate
+      </a>
+    </p>
+
+  </div>
+</div>

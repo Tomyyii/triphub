@@ -1,4 +1,45 @@
-<p>homePage works!</p>,
+<!-- <h1 class="text-3xl">TRIPHUB</h1>
 
-<button routerLink="/login">Iniciar sesion</button>
-<button routerLink="/register">Registrarse</button>
+<button routerLink="/login" class="rounded-lg blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700">Iniciar sesion</button>
+<button routerLink="/register">Registrarse</button> -->
+<div class="min-h-screen bg-[#e4c5c5] flex flex-col">
+  <header class="flex items-center justify-between px-6 py-5 md:px-12">
+    <h1 class="text-3xl font-extrabold tracking-tight text-[#355834]"><span class="text-black">Trip</span>Hub</h1>
+    <a routerLink="/login" class="rounded-xl bg-[#355834] px-4 py-2 font-semibold text-white shadow-sm transition hover:bg-[#14281D]">
+      Iniciar sesión
+    </a>
+  </header>
+
+  <main class="flex flex-1 items-center justify-center px-6 py-16">
+    <section class="max-w-3xl text-center">
+      <span class="mb-6 inline-block rounded-full bg-[#C2A878]/30 px-4 py-2 text-sm font-semibold text-[#6E633D]">
+        Tu próxima aventura empieza acá
+      </span>
+
+      <h2 class="mb-6 text-4xl font-extrabold leading-tight text-[#14281D] sm:text-6xl">
+        Planificá tus viajes
+        <span class="text-[#355834]">en un solo lugar.</span>
+      </h2>
+
+      <p class="mx-auto mb-8 max-w-xl text-lg leading-relaxed text-[#6E633D]">
+        Organizá tus destinos, itinerarios y gastos. Prepará tu próxima aventura con TripHub de forma sencilla.
+      </p>
+
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a routerLink="/register"
+          class="rounded-xl bg-[#355834] px-7 py-3 font-semibold text-white shadow-sm transition hover:bg-[#14281D]">
+          Crear cuenta
+        </a>
+
+        <a routerLink="/login"
+          class="rounded-xl border border-[#C2A878] bg-white px-7 py-3 font-semibold text-[#14281D] transition hover:bg-[#C2A878]/20">
+          Iniciar sesión
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-[#C2A878]/40 px-6 py-5 text-center text-sm text-[#6E633D]">
+    TripHub · Organizá tu próximo viaje
+  </footer>
+</div>

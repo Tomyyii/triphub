@@ -11,54 +11,24 @@
       "gender": "Male"
     },
     {
-      "id": "2",
-      "name": "Juan",
-      "surname": "Perez",
-      "email": "juan@gmail.com",
-      "password": "5678pas",
-      "birthday": "1999-05-15",
-      "phoneNumber": "987654321",
-      "gender": "Female"
-    },
-    {
       "email": "javierri@gmail.com",
       "birthday": "2004-10-10",
       "name": "Javier",
       "password": "Topo2209",
       "phoneNumber": "1161329058",
-      "surname": "Riquelme",
+      "surname": "Jimenez",
       "gender": "Masculino",
-      "id": "xGAmowpEy2Q"
+      "id": "eMBI3DJd4IE"
     },
     {
-      "email": "javierri@gmail.com",
-      "birthday": "2004-10-10",
-      "name": "Javier",
-      "password": "Topo2209",
-      "phoneNumber": "1161329058",
-      "surname": "Riquelme",
-      "gender": "Masculino",
-      "id": "_tCBXry9Awc"
-    },
-    {
-      "email": "nahuelito@gmail.com",
-      "birthday": "2006-04-05",
-      "name": "Nahuel",
-      "password": "Tomy2205",
-      "phoneNumber": "1161329058",
-      "surname": "Dallier",
-      "gender": "Femenino",
-      "id": "8Tn2WNmNCmg"
-    },
-    {
-      "email": "nahuelito@gmail.com",
-      "birthday": "2006-04-05",
-      "name": "Nahuel",
-      "password": "Tomy2205",
-      "phoneNumber": "1161329058",
-      "surname": "Dallier",
-      "gender": "Femenino",
-      "id": "YNzpOcxQq-c"
+      "email": "pelukeyn666@gmail.com",
+      "birthday": "2005-10-19",
+      "name": "Pelu",
+      "password": "Pelugei",
+      "phoneNumber": "3517068204",
+      "surname": "Keyn",
+      "gender": "Otro",
+      "id": "uPuUWIxojNU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

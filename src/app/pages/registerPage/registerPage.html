@@ -1,4 +1,4 @@
-
+<!--
 
 
 <form (submit)="onSubmit($event)">
@@ -114,4 +114,179 @@
 
   <button type="submit">Registrar</button>
 
-</form>
+</form> -->
+
+
+
+<div class="relative min-h-screen bg-[#e4c5c5] px-4 py-20 sm:px-6">
+
+  <a routerLink="/" class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 font-semibold text-[#355834] transition hover:bg-white/50 sm:left-8 sm:top-6 cursor-pointer">
+    <span class="text-xl">←</span>
+    Volver al inicio
+  </a>
+
+  <div class="mx-auto w-full max-w-3xl rounded-2xl bg-white p-6 shadow-xl sm:p-10">
+
+    <header class="mb-8 text-center">
+      <h1 class="mb-2 text-3xl font-extrabold tracking-tight text-[#355834] sm:text-4xl">
+        TripHub
+      </h1>
+      <h2 class="text-xl font-semibold text-[#14281D]">
+        Crear cuenta
+      </h2>
+      <p class="mt-2 text-sm text-gray-500">
+        Registrate y empezá a planificar tu próxima aventura.
+      </p>
+    </header>
+
+    <form (submit)="onSubmit($event)" class="space-y-5">
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
+        <div>
+          <label for="name" class="mb-2 block text-sm font-semibold text-[#14281D]">Nombre</label>
+          <input type="text" id="name" placeholder="Ingresá tu nombre"
+            [formField]="registerForm.name"
+            class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+          @if (isFieldInvalid('name')) {
+            <p class="mt-1 text-sm text-red-600">
+              @for (error of registerForm.name().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="surname" class="mb-2 block text-sm font-semibold text-[#14281D]">Apellido</label>
+          <input type="text" id="surname" placeholder="Ingresá tu apellido"
+            [formField]="registerForm.surname"
+            class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+          @if (isFieldInvalid('surname')) {
+            <p class="mt-1 text-sm text-red-600">
+              @for (error of registerForm.surname().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+          }
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="email" class="mb-2 block text-sm font-semibold text-[#14281D]">Email</label>
+          <input type="email" id="email" placeholder="tu@email.com"
+            [formField]="registerForm.email"
+            class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+          @if (isFieldInvalid('email')) {
+            <p class="mt-1 text-sm text-red-600">
+              @for (error of registerForm.email().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+          }
+
+          @if (usuarioExiste()) {
+            <p class="mt-1 text-sm text-red-600">
+              El usuario con este correo ya se encuentra registrado.
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="password" class="mb-2 block text-sm font-semibold text-[#14281D]">Contraseña</label>
+          <input type="password" id="password" placeholder="Creá una contraseña"
+            [formField]="registerForm.password"
+            class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+          @if (isFieldInvalid('password')) {
+            <p class="mt-1 text-sm text-red-600">
+              @for (error of registerForm.password().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="confirmPassword" class="mb-2 block text-sm font-semibold text-[#14281D]">Confirmar contraseña</label>
+          <input type="password" id="confirmPassword" placeholder="Repetí la contraseña"
+            [formField]="registerForm.confirmPassword"
+            class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+          @if (!passwordMatch() && registerForm.confirmPassword().touched()) {
+            <p class="mt-1 text-sm text-red-600">
+              Las contraseñas no coinciden.
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="birthday" class="mb-2 block text-sm font-semibold text-[#14281D]">Fecha de nacimiento</label>
+          <input type="date" id="birthday"
+            [formField]="registerForm.birthday"
+            class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+          @if (isFieldInvalid('birthday')) {
+            <p class="mt-1 text-sm text-red-600">
+              @for (error of registerForm.birthday().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+          }
+        </div>
+
+        <div>
+          <label for="gender" class="mb-2 block text-sm font-semibold text-[#14281D]">Género</label>
+          <select id="gender" [formField]="registerForm.gender"
+            class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+            <option value="">Seleccioná una opción</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
+            <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+          </select>
+
+          @if (isFieldInvalid('gender')) {
+            <p class="mt-1 text-sm text-red-600">
+              @for (error of registerForm.gender().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+          }
+        </div>
+
+        <div class="sm:col-span-2">
+          <label for="phoneNumber" class="mb-2 block text-sm font-semibold text-[#14281D]">Número de teléfono</label>
+          <input type="tel" id="phoneNumber" placeholder="Ej. +54 9 223 123-4567"
+            [formField]="registerForm.phoneNumber"
+            class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition placeholder:text-gray-400 focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+          @if (isFieldInvalid('phoneNumber')) {
+            <p class="mt-1 text-sm text-red-600">
+              @for (error of registerForm.phoneNumber().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+          }
+        </div>
+
+      </div>
+
+      <button type="submit"
+        class="w-full rounded-xl bg-[#355834] px-4 py-3 font-semibold text-white shadow-sm transition hover:bg-[#14281D] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#355834] cursor-pointer">
+        Crear mi cuenta
+      </button>
+
+    </form>
+
+    <p class="mt-6 text-center text-sm text-gray-600">
+      ¿Ya tenés una cuenta?
+      <a routerLink="/login" class="font-semibold text-[#355834] underline-offset-4 hover:underline">
+        Iniciá sesión
+      </a>
+    </p>
+
+  </div>
+</div>

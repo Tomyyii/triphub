@@ -8,6 +8,7 @@ type NuevoUsuario = Omit<Usuario, 'id'>;
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
 
   private http = inject(HttpClient)
@@ -28,7 +29,6 @@ export class AuthService {
     return this.obtenerUsuarioPorEmail(email).pipe(
       map(usuarios => usuarios.length > 0)
     )
-
   }
 
   logout():void
