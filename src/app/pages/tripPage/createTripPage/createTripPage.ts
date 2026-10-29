@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, AfterViewInit, OnDestroy } from '@angular/core';
 import { form, FormField, required, submit, validate } from '@angular/forms/signals';
 import { RouterLink } from '@angular/router';
 import { Viaje } from '../../../shared/interfaces/viaje.interface';
 import { TripService } from '../../../core/services/tripService';
 import { Destino } from '../../../shared/interfaces/destino.interface';
+
+import * as L from 'leaflet';
 
 interface viajeSimple {
   name:string,
@@ -18,7 +20,7 @@ interface viajeSimple {
   templateUrl: './createTripPage.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CreateTripPage {
+export class CreateTripPage implements AfterViewInit, OnDestroy{
 
 
   tripService = inject(TripService)
@@ -124,8 +126,26 @@ crearViaje():Omit<Viaje, 'id'> | null
 
 
 
+// Logica de leaflet
 
+private map?: L.Map;
 
+ngAfterViewInit(): void {
+  this.map = L.map('map').setView([-41.1335, -71.3103], 13);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(this.map);
+
+  L.marker([-41.1335, -71.3103])
+  .addTo(this.map)
+  .bindPopup('San Carlos de Bariloche')
+  .openPopup();
+}
+
+ngOnDestroy(): void {
+  this.map?.remove();
+}
 
 
 }
