@@ -1,1 +1,199 @@
-<p>createTripPage works!</p>,
+<!-- <div>
+  <a routerLink="/" class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-xl px-4 py-2 font-semibold text-[#355834] transition hover:bg-white/50 sm:left-8 sm:top-6 cursor-pointer">
+    <span class="text-xl">←</span>
+    Volver atras
+  </a>
+
+
+  <div>
+
+    <form (submit)="onSubmit($event)">
+
+
+      <label for="name">Nombre del viaje</label>
+      <input type="text" id="name" placeholder="Ingrese el nombre del viaje"
+      [formField]="viajeForm.name">
+
+      @if (isFieldInvalid('name')) {
+        <p class="mt-1 text-sm text-red-600">
+              @for (error of viajeForm.name().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+      }
+
+
+      <label for="fechaInicio">Fecha de inicio</label>
+      <input type="date" id="fechaInicio"
+      [formField]="viajeForm.fechaInicio">
+
+      @if (isFieldInvalid('fechaInicio')) {
+        <p class="mt-1 text-sm text-red-600">
+              @for (error of viajeForm.fechaInicio().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+      }
+
+      <label for="fechaFinalizacion">Fecha de finalizacion</label>
+      <input type="date" id="fechaFinalizacion"
+      [formField]="viajeForm.fechaFinalizacion">
+
+      @if (isFieldInvalid('fechaFinalizacion')) {
+        <p class="mt-1 text-sm text-red-600">
+              @for (error of viajeForm.fechaFinalizacion().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+      }
+
+
+    </form>
+
+  </div>
+</div> -->
+
+
+
+
+<div class="min-h-screen bg-[#e4c5c5] px-4 py-20 sm:px-8">
+
+  <a routerLink="/dashboard"
+    class="mb-6 inline-flex items-center gap-2 rounded-xl px-4 py-2 font-semibold text-[#355834] transition hover:bg-white/50">
+    <span class="text-xl">←</span>
+    Volver
+  </a>
+
+  <main class="mx-auto max-w-3xl">
+
+    <header class="mb-8">
+      <h1 class="text-3xl font-extrabold text-[#14281D]">
+        Crear un viaje
+      </h1>
+
+      <p class="mt-2 text-[#6E633D]">
+        Completá la información inicial para organizar tu próxima aventura.
+      </p>
+    </header>
+
+    <form (submit)="onSubmit($event)"
+      class="space-y-6 rounded-2xl bg-white p-6 shadow-sm sm:p-8">
+
+      <section class="space-y-5">
+        <h2 class="text-xl font-bold text-[#355834]">
+          Información general
+        </h2>
+
+        <div>
+          <label for="name"
+            class="mb-2 block font-medium text-[#14281D]">
+            Nombre del viaje
+          </label>
+
+          <input type="text" id="name"
+            placeholder="Ej. Vacaciones en Bariloche"
+            [formField]="viajeForm.name"
+            class="w-full rounded-xl border border-[#C2A878] px-4 py-3 outline-none focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+          @if (isFieldInvalid('name')) {
+            <p class="mt-1 text-sm text-red-600">
+              @for (error of viajeForm.name().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+              }
+            </p>
+          }
+        </div>
+
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
+          <div>
+            <label for="fechaInicio"
+              class="mb-2 block font-medium text-[#14281D]">
+              Fecha de inicio
+            </label>
+
+            <input type="date" id="fechaInicio"
+              [formField]="viajeForm.fechaInicio"
+              class="w-full rounded-xl border border-[#C2A878] px-4 py-3 outline-none focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+            @if (isFieldInvalid('fechaInicio')) {
+              <p class="mt-1 text-sm text-red-600">
+                @for (error of viajeForm.fechaInicio().errors(); track $index) {
+                  <span class="block">{{ error.message }}</span>
+                }
+              </p>
+            }
+          </div>
+
+          <div>
+            <label for="fechaFinalizacion"
+              class="mb-2 block font-medium text-[#14281D]">
+              Fecha de finalización
+            </label>
+
+            <input type="date" id="fechaFinalizacion"
+              [formField]="viajeForm.fechaFinalizacion"
+              class="w-full rounded-xl border border-[#C2A878] px-4 py-3 outline-none focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+            @if (isFieldInvalid('fechaFinalizacion')) {
+              <p class="mt-1 text-sm text-red-600">
+                @for (error of viajeForm.fechaFinalizacion().errors(); track $index) {
+                  <span class="block">{{ error.message }}</span>
+                }
+              </p>
+            }
+          </div>
+
+          <div>
+            <label for="transport"
+              class="mb-2 block font-medium text-[#14281D]">
+              Medio de transporte
+            </label>
+
+          <select id="transport"
+              [formField]="viajeForm.transporte"
+              class="w-full rounded-xl border border-[#C2A878] bg-white px-4 py-3 text-[#14281D] outline-none focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20">
+
+            <option value="">Seleccioná una opción</option>
+            <option value="Avion">Avión</option>
+            <option value="Tren">Tren</option>
+            <option value="Barco">Barco</option>
+            <option value="Auto">Auto</option>
+          </select>
+
+            @if (isFieldInvalid('transporte')) {
+              <p class="mt-1 text-sm text-red-600">
+              @for (error of viajeForm.transporte().errors(); track $index) {
+                <span class="block">{{ error.message }}</span>
+                }
+              </p>
+            }
+        </div>
+
+        </div>
+      </section>
+
+      <section class="space-y-3 border-t border-[#C2A878]/40 pt-6">
+        <h2 class="text-xl font-bold text-[#355834]">
+          Elegí tu destino
+        </h2>
+
+        <p class="text-sm text-[#6E633D]">
+          En el siguiente paso vas a poder seleccionar una ubicación en el mapa.
+        </p>
+
+        <div class="flex min-h-48 items-center justify-center rounded-xl border-2 border-dashed border-[#C2A878] bg-[#F1F5F2] p-6 text-center text-[#6E633D]">
+          El mapa se incorporará en esta sección.
+        </div>
+      </section>
+
+      <div class="flex justify-end border-t border-[#C2A878]/40 pt-6">
+        <button type="submit"
+          class="w-full rounded-xl bg-[#355834] px-6 py-3 font-semibold text-white transition hover:bg-[#14281D] sm:w-auto">
+          Continuar
+        </button>
+      </div>
+
+    </form>
+  </main>
+</div>

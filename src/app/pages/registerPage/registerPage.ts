@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Usuario } from '../../shared/interfaces/usuario.interface';
-import { form, minLength, pattern, required, FormField, maxLength, submit } from '@angular/forms/signals';
+import { form, minLength, pattern, required, FormField, maxLength, submit, validate } from '@angular/forms/signals';
 import { AuthService } from '../../core/services/authService';
 import { firstValueFrom } from 'rxjs';
 
@@ -69,6 +69,27 @@ export class RegisterPage {
     })
     maxLength(path.phoneNumber,10,{
       message:'El numero es invalido'
+    })
+
+
+    validate(path.birthday, ({value}) =>{
+      if(!value) return null;
+
+      const today = new Date()
+
+      today.setHours(0,0,0,0);
+      const birthDate = new Date(value());
+      birthDate.setHours(0,0,0,0);
+
+      if(birthDate > today)
+      {
+        return{
+          message: 'La fecha de nacimiento no puede ser mayor a hoy',
+          kind:'error'
+        };
+      }
+
+      return null;
     })
 
 

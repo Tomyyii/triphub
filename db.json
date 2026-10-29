@@ -31,5 +31,23 @@
       "id": "uPuUWIxojNU"
     }
   ],
+  "Viajes": [
+    {
+      "name": "Vacaciones en Bariloche",
+      "usuarioId": "1",
+      "transporte": "Tren",
+      "fechaFinalizacion": "2026-11-06",
+      "fechaInicio": "2026-10-29",
+      "estado": "activo",
+      "destino": {
+        "ciudad": "Buenos Aires",
+        "latitud": 1,
+        "longitud": 1,
+        "pais": "Argentina",
+        "id": 1
+      },
+      "id": "4IxlkieIYI0"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -4,18 +4,21 @@ import { Itinerario } from "./itinerario.interface";
 import { ListaNecesidades } from "./listaNecesidades.interface";
 import { Presupuesto } from "./presupuesto.interface";
 
-
+export type estadoViaje = 'activo' | 'cancelado' | 'finalizado';
 
 export interface Viaje{
+  name:string;
   id: number;
   fechaInicio: string;
   fechaFinalizacion: string;
-  estado: string;
+  estado: estadoViaje;
   transporte: string;
   destino: Destino;
-  presupuesto: Presupuesto;
-  gastos: Gasto[];
-  itinerario: Itinerario;
-  listaNecesidades: ListaNecesidades;
   usuarioId:number;
+
+  presupuesto?: Presupuesto;
+  gastos?: Gasto[];
+  itinerario?: Itinerario;
+  listaNecesidades?: ListaNecesidades;
+
 }
