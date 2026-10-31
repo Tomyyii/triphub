@@ -47,6 +47,54 @@
         "id": 1
       },
       "id": "4IxlkieIYI0"
+    },
+    {
+      "name": "Vacas",
+      "usuarioId": "1",
+      "transporte": "Tren",
+      "fechaFinalizacion": "2026-11-07",
+      "fechaInicio": "2026-10-30",
+      "estado": "activo",
+      "destino": {
+        "ciudad": "Buenos Aires",
+        "latitud": 1,
+        "longitud": 1,
+        "pais": "Argentina",
+        "id": 1
+      },
+      "id": "oHgW6mrXk4g"
+    },
+    {
+      "name": "Vacas",
+      "usuarioId": "1",
+      "transporte": "Tren",
+      "fechaFinalizacion": "2026-11-07",
+      "fechaInicio": "2026-10-30",
+      "estado": "activo",
+      "destino": {
+        "ciudad": "Buenos Aires",
+        "latitud": 1,
+        "longitud": 1,
+        "pais": "Argentina",
+        "id": 1
+      },
+      "id": "bwSI6fqowd4"
+    },
+    {
+      "name": "Vacas",
+      "usuarioId": "1",
+      "transporte": "Tren",
+      "fechaFinalizacion": "2026-11-07",
+      "fechaInicio": "2026-10-30",
+      "estado": "activo",
+      "destino": {
+        "ciudad": "Buenos Aires",
+        "latitud": 1,
+        "longitud": 1,
+        "pais": "Argentina",
+        "id": 1
+      },
+      "id": "ClGLYJBTd4k"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

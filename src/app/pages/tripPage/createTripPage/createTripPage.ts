@@ -6,6 +6,8 @@ import { TripService } from '../../../core/services/tripService';
 import { Destino } from '../../../shared/interfaces/destino.interface';
 
 import * as L from 'leaflet';
+import { CountryService } from '../../../core/services/countryService';
+import { MyCountry } from '../../../shared/interfaces/country.interface';
 
 interface viajeSimple {
   name:string,
@@ -147,5 +149,39 @@ ngOnDestroy(): void {
   this.map?.remove();
 }
 
+
+// Logica de buscar un pais
+
+  private countryService = inject(CountryService);
+
+  paises = signal<MyCountry[]>([]);
+
+  paisSeleccionado = signal<MyCountry | null>(null);
+
+  buscarPais(query: string)
+  {
+    if(query.length < 2)
+    {
+      this.paises.set([])
+      return;
+    }
+
+    this.countryService.searchByCountry(query).subscribe({
+      next:(resp) =>{
+        this.paises.set(resp);
+      },
+      error: (error) =>{
+        console.error(error)
+        this.paises.set([]);
+      }
+    })
+  }
+
+
+  seleccionarPais(pais: MyCountry)
+  {
+    this.paisSeleccionado.set(pais);
+    this.paises.set([]);
+  }
 
 }

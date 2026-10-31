@@ -178,6 +178,40 @@
           Elegí tu destino
         </h2>
 
+        <div class="space-y-2">
+          <label for="pais" class="block font-medium text-[#14281D]">
+            Buscar pais
+          </label>
+
+          <input type="text" id="pais"
+          placeholder="Ej. Argentina, Brasil, España..."
+          (input)="buscarPais($any($event.target).value)"
+          class="w-full rounded-xl border border-[#C2A878] px-4 py-3 outline-none focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20"
+          >
+
+          @if (paises().length > 0) {
+            <div class="rounded-xl border border-[#C2A878] bg-white shadow-sm">
+              @for (pais of paises(); track pais.alpha_2) {
+                <button
+                type="button"
+                (click)="seleccionarPais(pais)"
+                class="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-[#F1F5F2]">
+
+                <span>{{pais.flag}}</span>
+                <span>{{pais.name}}</span>
+                </button>
+              }
+            </div>
+
+            @if (paisSeleccionado()) {
+              <p class="text-sm font-medium text-[#355834]">
+                Pais seleccionado : {{paisSeleccionado()?.name}}
+              </p>
+            }
+          }
+
+        </div>
+
         <p class="text-sm text-[#6E633D]">
           En el siguiente paso vas a poder seleccionar una ubicación en el mapa.
         </p>
