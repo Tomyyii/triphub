@@ -8,6 +8,8 @@ import { Destino } from '../../../shared/interfaces/destino.interface';
 import * as L from 'leaflet';
 import { CountryService } from '../../../core/services/countryService';
 import { MyCountry } from '../../../shared/interfaces/country.interface';
+import { City } from '../../../shared/interfaces/cityResponse.interface';
+import { OpenMeteoService } from '../../../core/services/openMeteoService';
 
 interface viajeSimple {
   name:string,
@@ -184,4 +186,68 @@ ngOnDestroy(): void {
     this.paises.set([]);
   }
 
+
+  // LOGICA DE SELECCIONAR CIUDADES
+
+  ciudades = signal<City[]>([]);
+
+  private cityService = inject(OpenMeteoService);
+
+  ciudadSeleccionada = signal<City | null>(null);
+
+
+
+  buscarCiudades(query:string)
+  {
+    const pais = this.paisSeleccionado();
+
+    if(!pais || query.length < 2 )
+    {
+      this.ciudades.set([])
+      return;
+    }
+
+    this.cityService.obtenerCiudades(query,pais.alpha_2).subscribe({
+      next: (resp) =>{
+        this.ciudades.set(resp?.results ?? []);
+        console.log('Ciudad', resp)
+      },
+      error: (error) =>{
+        console.error('Error al obtener las ciudades del pais seleccionado', error);
+        this.ciudades.set([]);
+      }
+
+    })
+
+  }
+
+
+  seleccionarCiudad(ciudad: City)
+  {
+    this.ciudadSeleccionada.set(ciudad);
+    this.ciudades.set([])
+
+    this.colocarMarcador()
+  }
+
+
+  colocarMarcador()
+  {
+    const nombreCiudad = signal(this.ciudadSeleccionada()?.name)
+    const latitud = signal(this.ciudadSeleccionada()?.latitude);
+    const longitud = signal(this.ciudadSeleccionada()?.longitude);
+
+    if(!longitud || !latitud ||  !this.map)
+    {
+      return;
+    }
+    this.map?.setView([latitud()!,longitud()!], 13)
+
+
+    L.marker([latitud()!,longitud()!])
+    .addTo(this.map)
+    .bindPopup(nombreCiudad()!)
+  }
 }
+
+
