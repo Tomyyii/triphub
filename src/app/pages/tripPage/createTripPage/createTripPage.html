@@ -185,7 +185,8 @@
 
           <input type="text" id="pais"
           placeholder="Ej. Argentina, Brasil, España..."
-          (input)="buscarPais($any($event.target).value)"
+          [value]="busquedaPais()"
+          (input)="buscarPais($any($event.target).value) ; busquedaPais.set($any($event.target).value)"
           class="w-full rounded-xl border border-[#C2A878] px-4 py-3 outline-none focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20"
           >
 
@@ -224,7 +225,8 @@
       type="text"
       id="ciudad"
       placeholder="Ej. Mar del Plata"
-      (input)="buscarCiudades($any($event.target).value)"
+      [value]="busquedaCiudad()"
+      (input)="buscarCiudades($any($event.target).value) ; busquedaCiudad.set($any($event.target).value)"
       class="w-full rounded-xl border border-[#C2A878] px-4 py-3 outline-none focus:border-[#355834] focus:ring-2 focus:ring-[#355834]/20"
     />
 

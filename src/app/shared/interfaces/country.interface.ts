@@ -1,3 +1,5 @@
+import { Coordinates } from "./RESTcountries.interface";
+
 export interface MyCountry{
 
   alpha_2: string;
@@ -6,7 +8,6 @@ export interface MyCountry{
   name: string;
   capital: string;
   population: number;
-
-
+  coordinates : Coordinates;
 
 }

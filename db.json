@@ -95,6 +95,70 @@
         "id": 1
       },
       "id": "ClGLYJBTd4k"
+    },
+    {
+      "name": "bulgarTour",
+      "usuarioId": "1",
+      "transporte": "Avion",
+      "fechaFinalizacion": "2026-12-23",
+      "fechaInicio": "2026-12-12",
+      "estado": "activo",
+      "destino": {
+        "ciudad": "Buenos Aires",
+        "latitud": 1,
+        "longitud": 1,
+        "pais": "Argentina",
+        "id": 1
+      },
+      "id": "-K1GlykGKiA"
+    },
+    {
+      "name": "bulgarTour",
+      "usuarioId": "1",
+      "transporte": "Avion",
+      "fechaFinalizacion": "2026-12-04",
+      "fechaInicio": "2026-11-19",
+      "estado": "activo",
+      "destino": {
+        "ciudad": "Mar del Plata",
+        "latitud": -38.00042,
+        "longitud": -57.5562,
+        "pais": "Argentina",
+        "id": 3430863
+      },
+      "id": "xSMc7TnRuY8"
+    },
+    {
+      "name": "asdasdas",
+      "usuarioId": "1",
+      "transporte": "Tren",
+      "fechaFinalizacion": "2026-12-02",
+      "fechaInicio": "2026-11-18",
+      "estado": "activo",
+      "destino": {
+        "ciudad": "Mar del Plata",
+        "latitud": -38.00042,
+        "longitud": -57.5562,
+        "pais": "Argentina",
+        "id": 3430863
+      },
+      "id": "9RVAcGG5HUs"
+    },
+    {
+      "name": "bulgarTour",
+      "usuarioId": "1",
+      "transporte": "Barco",
+      "fechaFinalizacion": "2026-11-27",
+      "fechaInicio": "2026-11-13",
+      "estado": "activo",
+      "destino": {
+        "ciudad": "Mar del Plata",
+        "latitud": -38.00042,
+        "longitud": -57.5562,
+        "pais": "Argentina",
+        "id": 3430863
+      },
+      "id": "IEc98ksqOVg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

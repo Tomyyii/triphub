@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal, AfterViewInit, OnDestroy } from '@angular/core';
 import { form, FormField, required, submit, validate } from '@angular/forms/signals';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Viaje } from '../../../shared/interfaces/viaje.interface';
 import { TripService } from '../../../core/services/tripService';
 import { Destino } from '../../../shared/interfaces/destino.interface';
@@ -27,6 +27,13 @@ interface viajeSimple {
 export class CreateTripPage implements AfterViewInit, OnDestroy{
 
 
+  router = inject(Router)
+
+
+  busquedaCiudad = signal('');
+  busquedaPais = signal('');
+
+
   tripService = inject(TripService)
 
 viajeModel = signal<viajeSimple>({
@@ -37,10 +44,10 @@ viajeModel = signal<viajeSimple>({
 });
 
 destinoModel = signal<Destino>({
-  ciudad:'Buenos Aires',
-  latitud:1,
-  longitud:1,
-  pais:'Argentina',
+  ciudad:'',
+  latitud:0,
+  longitud:0,
+  pais:'',
   id:1
 })
 
@@ -103,12 +110,22 @@ onSubmit(event: SubmitEvent)
     })
 
   } )
+  this.router.navigate(['/dashboard/trip'])
+
 }
 
 
 crearViaje():Omit<Viaje, 'id'> | null
 {
   const usuarioId = this.tripService.obtenerIdUsuario()
+
+  this.destinoModel.set({
+    ciudad:this.ciudadSeleccionada()?.name!,
+    latitud:this.ciudadSeleccionada()?.latitude!,
+    longitud:this.ciudadSeleccionada()?.longitude!,
+    pais:this.paisSeleccionado()?.name!,
+    id:this.ciudadSeleccionada()?.id
+  })
 
 
   if(!usuarioId)
@@ -184,6 +201,27 @@ ngOnDestroy(): void {
   {
     this.paisSeleccionado.set(pais);
     this.paises.set([]);
+
+    this.colocarMarcadorPais();
+    this.busquedaPais.set(pais.name)
+  }
+
+
+  colocarMarcadorPais()
+  {
+    const nombrePais = signal(this.paisSeleccionado()?.name)
+    const latitud = signal(this.paisSeleccionado()?.coordinates.lat)
+    const longitud = signal(this.paisSeleccionado()?.coordinates.lng)
+
+    if(!longitud || !latitud || !this.map)
+    {
+      return;
+    }
+
+    this.map.setView([latitud()!,longitud()!], 4);
+    L.marker([latitud()!,longitud()!])
+    .addTo(this.map)
+    .bindPopup(nombrePais()!);
   }
 
 
@@ -227,11 +265,12 @@ ngOnDestroy(): void {
     this.ciudadSeleccionada.set(ciudad);
     this.ciudades.set([])
 
-    this.colocarMarcador()
+    this.colocarMarcadorCiudad()
+    this.busquedaCiudad.set(ciudad.name)
   }
 
 
-  colocarMarcador()
+  colocarMarcadorCiudad()
   {
     const nombreCiudad = signal(this.ciudadSeleccionada()?.name)
     const latitud = signal(this.ciudadSeleccionada()?.latitude);

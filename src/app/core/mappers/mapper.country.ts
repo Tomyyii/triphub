@@ -16,7 +16,8 @@ export class CountryMapper {
       flag:item.flag.emoji,
       name:item.names.translations['spa']?.common ?? 'No spanish name',
       population:item.population,
-      url_svg:item.flag.url_svg
+      url_svg:item.flag.url_svg,
+      coordinates: item.coordinates
     }
   }
 
